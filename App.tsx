@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { Confirmation } from './src/pages/Confirmation';
+import AppLoading from 'expo-app-loading';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import {
+  useFonts,
+  Jost_400Regular,
+  Jost_600SemiBold
+} from '@expo-google-fonts/jost';
+
+export default function App(){
+  const [ fontsLoaded ] = useFonts({
+    Jost_400Regular,
+    Jost_600SemiBold
+  });
+
+  if(!fontsLoaded) return <AppLoading />
+  return(
+    <Confirmation />
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
