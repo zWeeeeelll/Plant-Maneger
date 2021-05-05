@@ -5,19 +5,20 @@ import {
   Image,
   View
 } from 'react-native';
-import userImg from '../assets/isaac.png';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import colors from '../styles/colors';
+import userImg from '../assets/isaac.png';
+import fonts from '../styles/fonts';
 
 export function Header(){
   return (
     <View style={styles.container}>
       <View>
-        <Text>Ola,</Text>
-        <Text>Isaac</Text>
+        <Text style={styles.greenting}>Ola,</Text>
+        <Text style={styles.userName}>Isaac</Text>
       </View>
 
-      <Image source={userImg} />
+      <Image source={userImg} style={styles.image}/>
     </View>
   )
 }
@@ -29,7 +30,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 20,
-    backgroundColor: colors.red,
     marginTop: getStatusBarHeight()
+  },
+
+  image: {
+    width: 70,
+    height: 70,
+    borderRadius: 40
+  },
+
+  greenting: {
+    fontSize: 32,
+    color: colors.heading,
+    fontFamily: fonts.text
+  },
+
+  userName: {
+    fontSize: 32,
+    fontFamily: fonts.heading,
+    lineHeight: 40
   }
 })
