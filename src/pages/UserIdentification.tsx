@@ -8,12 +8,14 @@ import {
   TextInput,
   View,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { Button } from '../components/Button';
 import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export function UserIdentification() {
@@ -31,12 +33,19 @@ export function UserIdentification() {
     setIsFocused(true)
   }
 
+
   function handleInputChange(value: string){
     setIsFilled(!!value);
     setName(value)
   }
 
-  function handleSubmit(){
+  async function handleSubmit(){
+
+    if(!name)
+    return Alert.alert(`Me diz como chamar voce`);
+
+    await AsyncStorage.setItem('@plantmanager:user', name);
+
     navigation.navigate('Confirmation');
   }
 
